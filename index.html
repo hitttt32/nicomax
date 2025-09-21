@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NicoMax - Pare de Fumar</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg,#ff4d4d,#ff944d);
+  color:#fff; text-align:center; overflow-x:hidden;
+}
+header {
+  background:#222;color:#fff;padding:20px 10px;
+  font-size:1.8em;font-weight:bold;letter-spacing:1px;
+  text-transform:uppercase;box-shadow:0 4px 10px rgba(0,0,0,0.4);
+}
+main{padding:20px;max-width:900px;margin:0 auto;position:relative;z-index:1;}
+h2{font-size:1.5em;margin-bottom:20px;color:#fff;text-shadow:2px 2px 8px rgba(0,0,0,0.4);}
+img.product{max-width:60%;height:auto;margin:20px 0;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,0.4);transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;}
+img.product:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(0,0,0,0.5);}
+.benefits,.social-proof{background:rgba(0,0,0,0.3);padding:20px 15px;margin:25px 10px;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.5);line-height:1.6;}
+.benefits h3,.social-proof h3{font-size:1.3em;margin-bottom:15px;color:#ffeb3b;text-shadow:1px 1px 4px rgba(0,0,0,0.5);}
+.cta{margin:15px 0;}
+.whatsapp-btn{background: linear-gradient(45deg,#25D366,#128C7E);color:#fff;padding:10px 20px;border-radius:50px;font-size:1em;font-weight:bold;text-decoration:none;box-shadow:0 6px 15px rgba(0,0,0,0.4);transition: all 0.3s ease;display:inline-block;margin:5px;animation: pulse 1.5s infinite;}
+.whatsapp-btn:hover{background: linear-gradient(45deg,#20b858,#0f6b5f);transform:scale(1.08);box-shadow:0 8px 20px rgba(0,0,0,0.5);}
+@keyframes pulse{0%{transform:scale(1);}50%{transform:scale(1.05);}100%{transform:scale(1);} }
+footer{padding:20px;background:#222;font-size:0.9em;letter-spacing:0.5px;}
+.countdown{font-size:1.3em;background:#ff0000;color:#fff;display:inline-block;padding:10px 20px;border-radius:50px;margin-bottom:20px;box-shadow:0 6px 15px rgba(0,0,0,0.4);}
+.cigar{position:fixed;width:60px;height:40px;background:url('broken_cigarette.png') no-repeat center/contain;top:-50px;z-index:9999;pointer-events:none;animation-name:fall;animation-timing-function:linear;animation-iteration-count:infinite;}
+@keyframes fall{0%{transform:translateY(-50px) rotate(0deg);opacity:1;}100%{transform:translateY(110vh) rotate(360deg);opacity:0.8;}}
+.selo{display:inline-block;margin:15px 10px;background:#fff;color:#222;padding:10px 15px;border-radius:12px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3);font-size:0.9em;}
+.review{display:flex;align-items:center;gap:12px;margin-bottom:12px;background: rgba(0,0,0,0.2);padding:10px 12px;border-radius:10px;}
+.review img{width:40px;height:40px;border-radius:50%;object-fit:cover;}
+.review p{margin:0;color:#fff;font-size:0.95em;}
+.stars{color:#ffeb3b;margin-left:5px;}
+
+/* ABAS KITS */
+.tab-container{display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;}
+.tab{cursor:pointer;padding:10px;border-radius:15px;box-shadow:0 4px 12px rgba(0,0,0,0.3);transition:0.3s;border:3px solid transparent;background:rgba(0,0,0,0.3);}
+.tab img{width:120px;border-radius:12px;display:block;margin:auto;}
+.tab.active{border-color:#ffeb3b;animation:pulse 1s infinite alternate;}
+.tab-name{color:#ffeb3b;font-weight:bold;margin-top:5px;font-size:1.1em;}
+.promo{color:#ffeb3b;font-weight:bold;font-size:1.2em;}
+
+/* VIDEOS CENTRALIZADOS */
+.feedback-video-container{display:flex;justify-content:center;flex-wrap:wrap;gap:15px;margin-top:15px;margin-bottom:20px;}
+.feedback-video{max-width:300px;width:100%;border-radius:15px;box-shadow:0 6px 20px rgba(0,0,0,0.5);}
+
+/* MODAIS POLÍTICA E TERMOS */
+.modal {
+  display:none;
+  position:fixed;
+  top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.85);
+  z-index:10000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.modal-content{ background:#222; color:#fff; border-radius:15px; max-width:700px; width:100%; padding:30px; text-align:left; box-shadow:0 10px 30px rgba(0,0,0,0.6); position:relative; animation: slideIn 0.5s ease; }
+.modal-content h2{color:#ffeb3b;text-align:center;margin-bottom:15px;}
+.modal-content h3{color:#ffeb3b;margin-top:15px;margin-bottom:10px;}
+.modal-content p, .modal-content li{color:#fff;font-size:1em;line-height:1.6;}
+.modal-content ul{margin-left:20px;margin-bottom:15px;}
+.close {
+  position:absolute; top:10px; right:20px;
+  font-size:2em; font-weight:bold;
+  color:#ff4d4d; cursor:pointer;
+  transition:0.3s; line-height:1;
+}
+.close::after { content:"✖"; }
+.close:hover{color:#ffeb3b;transform:scale(1.2);}
+@media (max-width:600px){ .close{font-size:2.5em;right:15px;} }
+@keyframes slideIn {from{transform:translateY(-50px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+/* RESPONSIVO PARA CELULAR */
+@media (max-width: 600px) {
+  footer {
+    padding: 25px 15px;
+    text-align: center;
+  }
+
+  /* Força o conteúdo do footer a ficar empilhado */
+  footer .footer-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+    text-align: center !important;
+  }
+
+  footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  footer .footer-links a {
+    display: inline-block;
+    width: 90%;
+    max-width: 250px;
+    padding: 10px 15px;
+    margin: 0 auto;
+    font-size: 0.9em;
+    border-radius: 8px;
+    background: #333;
+    text-decoration: none;
+    color: #fff;
+    transition: 0.3s;
+  }
+
+  footer .footer-links a:hover {
+    background: #ff944d;
+  }
+
+  footer img {
+    width: 150px !important;
+    height: auto !important;
+    margin-bottom: 15px;
+  }
+
+  /* Espaço extra no final */
+  footer p {
+    margin-top: 10px;
+    font-size: 0.85em;
+  }
+
+
+
+
+</style>
+</head>
+<body>
+
+<header>🚭 Pare de Fumar com NicoMax ✅</header>
+
+<main>
+<div class="countdown" id="countdown">Oferta termina em: 12:00:00</div>
+<h2>O método definitivo para largar o cigarro!</h2>
+<img class="product" src="nicomax_ad.png" alt="NicoMax - Pare de Fumar">
+
+<div class="benefits">
+<h3>✨ Benefícios do NicoMax</h3>
+<p>✔️ Reduz a ansiedade e a vontade de fumar</p>
+<p>✔️ Melhora a saúde dos pulmões e do coração</p>
+<p>✔️ Elimina o cheiro do cigarro</p>
+<p>✔️ Mais energia e qualidade de vida</p>
+</div>
+
+<div class="elementor-widget-wrap elementor-element-populated">
+						<div class="elementor-element elementor-element-124484f6 elementor-widget elementor-widget-heading" data-id="124484f6" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h2 class="elementor-heading-title elementor-size-default"><b>Escolha o melhor tratamento abaixo: </b></h2>				</div>
+				</div>
+				<div class="elementor-element elementor-element-2c10a204 elementor-widget elementor-widget-text-editor" data-id="2c10a204" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>Chega de ficar apenas desejando, chegou sua hora de <b>melhorar a saúde</b></p>								</div>
+				</div>
+				<div class="elementor-element elementor-element-4b233971 elementor-widget elementor-widget-html" data-id="4b233971" data-element_type="widget" data-widget_type="html.default">
+				<div class="elementor-widget-container">
+					<div id="irparaoferta"></div>				</div>
+				</div>
+					</div>
+
+<!-- ABAS DE KITS -->
+<style>
+.tab-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.tab {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 280px; /* Largura padrão */
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tab:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.tab img {
+  width: 100%;
+  max-height: 220px; /* Mantém proporção */
+  object-fit: contain; /* Não distorce a imagem */
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.tab-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+.tab-name.promo {
+  color: #e63946;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.cta {
+  margin-top: 15px;
+}
+
+.whatsapp-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  background: linear-gradient(90deg, #128C7E, #25D366);
+  transform: scale(1.05);
+}
+</style>
+
+<style>
+.tab-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.tab {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tab:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.tab img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.tab-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+.tab-name.promo {
+  color: #e63946;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.price {
+  font-size: 16px;
+  margin-top: 5px;
+  color: #128C7E;
+  font-weight: bold;
+}
+
+.cta {
+  margin-top: 15px;
+}
+
+.buy-btn {
+  display: inline-block;
+  background: linear-gradient(90deg, #25D366, #128C7E);
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.buy-btn:hover {
+  background: linear-gradient(90deg, #128C7E, #25D366);
+  transform: scale(1.05);
+}
+</style>
+
+<div class="tab-container">
+
+  <!-- KIT 1 -->
+  <div class="tab">
+    <img src="https://processador1.online/wp-content/uploads/2025/02/KIT-1.png" alt="NicoMax 1">
+    <div class="tab-name">🔥 NicoMax 1 Frasco</div>
+    <div class="price">R$ 197,00 ou em até 12x</div>
+    <div class="cta">
+      <a class="buy-btn" href="https://app.keedpay.com.br/checkout/tWnBVxnImZc/MitM7r9r0dP" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+  <!-- KIT 2 -->
+  <div class="tab">
+    <img src="tela2.png" alt="NicoMax 2">
+    <div class="tab-name promo">🔥 NicoMax 2 Frascos - Promoção</div>
+    <div class="price">R$ 197,00 ou em até 12x</div>
+    <div class="cta">
+      <a class="buy-btn" href="https://app.keedpay.com.br/checkout/TyAQVnjfYbE/MitM7r9r0dP" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+  <!-- KIT 3 -->
+  <div class="tab">
+    <img src="https://imgs.search.brave.com/DoPZk2GK3Q2j5mlcaaeq_mkbPk7M7gpSxxGunizRH7E/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9RX05QXzJY/XzgxMjkzOC1NTEI4/NTUwNjI4NzI1Nl8w/NjIwMjUtVi0zLXBv/dGVzLWRlLW5pY29t/YXgtcHJvLTE4MC1j/YXBzdWxhcy1mb3Jt/dWxhLWF2YW5jYWRh/LndlYnA" alt="NicoMax 3">
+    <div class="tab-name">🔥 NicoMax 3 Frascos</div>
+    <div class="price">R$ 297,00 ou em até 12x</div>
+    <div class="cta">
+      <a class="buy-btn" href="https://app.keedpay.com.br/checkout/HLbqE5FgV5F/MitM7r9r0dP" target="_blank">Comprar Agora</a>
+    </div>
+  </div>
+
+</div>
+
+
+
+<img loading="lazy" decoding="async" width="470" height="119" src="https://processador1.online/wp-content/uploads/2025/02/frete_gratis.png" class="attachment-large size-large wp-image-19" alt="" srcset="https://processador1.online/wp-content/uploads/2025/02/frete_gratis.png 470w, https://processador1.online/wp-content/uploads/2025/02/frete_gratis-300x76.png 300w" sizes="auto, (max-width: 470px) 100vw, 470px">
+
+<div class="social-proof">
+<h3>📢 Avaliações</h3>
+<div class="review"><img src="joao.png" alt="João S."><p>“Parei de fumar em 2 semanas graças ao NicoMax! – João S.” <span class="stars">⭐⭐⭐⭐⭐</span></p></div>
+<div class="review"><img src="maria.png" alt="Maria L."><p>“Minha vida mudou completamente, recomendo a todos! – Maria L.” <span class="stars">⭐⭐⭐⭐⭐</span></p></div>
+<div class="review"><img src="lourdes.png" alt="Lourdes M."><p>“Produto incrível, entrega rápida e seguro! – Lourdes M.” <span class="stars">⭐⭐⭐⭐⭐</span></p></div>
+
+<div class="feedback-video-container">
+  <video class="feedback-video" controls>
+    <source src="https://processador1.online/wp-content/uploads/2025/02/Video-3-Francisca.mp4" type="video/mp4">
+  </video>
+  <video class="feedback-video" controls>
+    <source src="https://processador1.online/wp-content/uploads/2025/02/Video-2-Amanda.mp4" type="video/mp4">
+  </video>
+  <iframe class="feedback-video" src="https://www.youtube.com/embed/PzKpLDQm_SY" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+
+<div class="selo-pagamento">
+  💳 Pagamento 100% seguro <br>
+  ⚡ Pix, 💵 Boleto ou 🏠 Pague na entrega
+</div>
+
+<style>
+.selo-pagamento {
+  display: inline-block;
+  background: linear-gradient(135deg, #00c853, #b2ff59); /* Verde moderno */
+  color: #222;
+  font-weight: bold;
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  font-size: 1em;
+  text-align: center;
+  margin: 20px auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.selo-pagamento:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+</style>
+
+
+
+
+</main>
+
+
+<!-- MODAIS -->
+<div id="privacy" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('privacy')"></span>
+    <h2>Política de Privacidade</h2>
+    <p>Esta Política de Privacidade descreve o tratamento dos dados pessoais, em conformidade com a <strong>LGPD (Lei Geral de Proteção de Dados, Lei nº 13.709/2018)</strong>.</p>
+    <h3>1. Dados coletados</h3>
+    <ul>
+      <li>Nome, e-mail, telefone e endereço para entrega;</li>
+      <li>Dados de navegação e interação com o site;</li>
+      <li>Informações de pagamento processadas de forma segura.</li>
+    </ul>
+    <h3>2. Finalidade</h3>
+    <ul>
+      <li>Processamento de pedidos e entregas;</li>
+      <li>Suporte e atendimento personalizado;</li>
+      <li>Comunicação de promoções com consentimento do usuário;</li>
+      <li>Melhoria da experiência do usuário.</li>
+    </ul>
+    <h3>3. Direitos do usuário</h3>
+    <ul>
+      <li>Acessar, corrigir ou excluir seus dados;</li>
+      <li>Retirar consentimento a qualquer momento;</li>
+      <li>Solicitar informações sobre o tratamento de dados.</li>
+    </ul>
+    <p>Última atualização: Setembro de 2025</p>
+  </div>
+</div>
+
+<div id="terms" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('terms')"></span>
+    <h2>Termos de Uso</h2>
+    <p>Ao utilizar este site, você concorda com os Termos de Uso abaixo:</p>
+    <h3>1. Aceitação</h3>
+    <p>O uso do site implica aceitação integral destes termos.</p>
+    <h3>2. Compras</h3>
+    <ul>
+      <li>Produtos sujeitos à disponibilidade;</li>
+      <li>Preços podem ser alterados;</li>
+      <li>Pagamentos seguros via WhatsApp ou KeedPay;</li>
+      <li>Fornecer informações corretas para entrega.</li>
+    </ul>
+    <h3>3. Responsabilidade</h3>
+    <p>Não garantimos resultados individuais; não nos responsabilizamos por danos indiretos. Legislação brasileira será respeitada.</p>
+    <p>Última atualização: Setembro de 2025</p>
+  </div>
+</div>
+
+
+
+
+<style>
+  /* Container geral */
+  .faq-container {
+    max-width: 800px;
+    margin: 50px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+
+  .faq-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+  }
+
+  .faq-item {
+    background: #fff;
+    margin-bottom: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    background: linear-gradient(135deg,#ff5e5e,#ff914d);
+    color: #fff;
+    transition: background 0.3s;
+  }
+
+  .faq-question:hover {
+    background: linear-gradient(135deg,#ff3e3e,#ff7a29);
+  }
+
+  .faq-question i {
+    font-style: normal;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-question i {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    display: none;
+    padding: 16px 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    background: #f9f9f9;
+    color: #333;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .faq-item.active .faq-answer {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .faq-question { font-size: 14px; }
+  }
+</style>
+
+<section class="faq-container">
+  <div class="faq-title">TIRE SUAS DÚVIDAS</div>
+
+  <div class="faq-item">
+    <div class="faq-question">Como devo fazer o uso do NicoMax? <i>+</i></div>
+    <div class="faq-answer">
+      NicoMax deve ser tomado diariamente, duas cápsulas ao dia, uma a cada doze horas. A recomendação é que seja tomado antes das principais refeições.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Qual o período recomendado que devo estar fazendo uso do produto? <i>+</i></div>
+    <div class="faq-answer">
+      Após os primeiros dias, seus nutrientes já iniciam o tratamento no organismo. É recomendado o uso por pelo menos 3 meses para conseguir os melhores resultados.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Quem pode usar? Existe efeitos colaterais ou alguma contraindicação? <i>+</i></div>
+    <div class="faq-answer">
+      Por ser um produto natural não existe nenhum efeito colateral com seu consumo, e qualquer pessoa pode tomar e aproveitar seus benefícios, porém, gestantes, crianças e pessoas enfermas ou que fazem uso contínuo de algum medicamento devem consultar um médico antes de iniciar o consumo.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">Quais serão os efeitos de NicoMax? <i>+</i></div>
+    <div class="faq-answer">
+      Nos primeiros dias de uso você perceberá uma diminuição notável pelo desejo de nicotina. Você também se sentirá menos ansioso e com uma maior disposição para as tarefas diárias.
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO NICOMAX NATURAL COM TEXTO CENTRALIZADO -->
+<section style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;margin:50px 0;gap:30px; text-align:center;">
+
+  <!-- IMAGEM ANIMADA -->
+  <div style="flex:1;min-width:250px;text-align:center;">
+    <img class="animated-img" 
+         src="https://processador1.online/wp-content/uploads/2025/02/sem-fundo-anv.png" 
+         alt="NicoMax aprovado ANVISA" 
+         style="max-width:80%;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,0.4);">
+  </div>
+
+
+  <!-- TEXTO COMPACTO CENTRALIZADO -->
+  <div style="flex:1;min-width:250px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+    <h2 style="color:#ffeb3b;text-shadow:2px 2px 8px rgba(0,0,0,0.4);margin-bottom:10px;font-size:1.5em;">NICOMAX é um composto natural</h2>
+    <h3 style="color:#00e676;text-shadow:1px 1px 6px rgba(0,0,0,0.3);margin-bottom:15px;font-size:1.2em;">APROVADO PELA ANVISA</h3>
+    <p style="background:rgba(0,0,0,0.3);padding:10px 12px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.5);margin-bottom:10px;line-height:1.5;font-size:0.95em; max-width:400px;">
+      Após os mais variados estudos, pesquisas e testes, NicoMax foi APROVADO pela ANVISA e pelo Ministério da Saúde para ser vendido em todo o Brasil.
+    </p>
+    <p style="background:rgba(0,0,0,0.3);padding:10px 12px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.5);line-height:1.5;font-size:0.95em; max-width:400px;">
+      Com sua fórmula que combina os melhores ingredientes e vitaminas do mercado, você irá eliminar o hábito de fumar e recuperar a disposição e a boa saúde.
+    </p>
+  </div>
+</section>
+
+
+
+
+
+<style>
+/* ANIMAÇÃO DE FLUTUAR NA IMAGEM */
+.animated-img {
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.animated-img:hover {
+  transform: scale(1.08);
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+
+
+<!-- SEÇÃO DESAFIO 90 DIAS COM GARANTIA AJUSTADA -->
+<section style="background: linear-gradient(135deg,#ff4d4d,#ff944d);padding:40px 20px;border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.5);margin:30px 0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:30px;text-align:left;">
+
+  <!-- TEXTO CENTRAL -->
+  <div style="flex:1;min-width:250px;max-width:500px;display:flex;flex-direction:column;justify-content:center;">
+    <h2 style="color:#fff;font-size:2em;margin-bottom:15px;text-shadow:2px 2px 10px rgba(0,0,0,0.5);text-align:center;">💪 Desafio 90 Dias NicoMax</h2>
+    <p style="color:#fff;font-size:1.1em;margin-bottom:25px;text-shadow:1px 1px 6px rgba(0,0,0,0.3);text-align:center;">
+      Alcance a liberdade do cigarro e transforme sua saúde em apenas 90 dias! Siga nosso método comprovado e sinta os resultados de forma segura e natural.
+    </p>
+    <a href="#irparaoferta" class="desafio-btn" style="align-self:center;">
+      Quero Participar do Desafio!
+    </a>
+  </div>
+
+  <!-- IMAGEM GARANTIA -->
+  <div style="flex:0 0 200px;text-align:center;">
+    <img src="https://processador1.online/wp-content/uploads/2025/02/garantia.webp" 
+         alt="Garantia NicoMax" 
+         style="max-width:100%;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,0.4);animation: float 3s ease-in-out infinite;">
+  </div>
+
+</section>
+
+<style>
+.desafio-btn {
+  display:inline-block;
+  background: linear-gradient(135deg,#ffeb3b,#ff944d);
+  color:#222;
+  font-weight:bold;
+  padding:16px 32px;
+  border-radius:50px;
+  font-size:1.2em;
+  text-decoration:none;
+  box-shadow:0 8px 25px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  animation: glow 2s infinite alternate;
+}
+.desafio-btn:hover {
+  transform: scale(1.1);
+  box-shadow:0 12px 35px rgba(255,235,59,0.8), 0 0 25px rgba(255,235,59,0.6);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 10px rgba(255,235,59,0.5); }
+  50% { box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 25px rgba(255,235,59,0.8); }
+  100% { box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 10px rgba(255,235,59,0.5); }
+}
+
+/* ANIMAÇÃO DE FLUTUAR NA IMAGEM */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* RESPONSIVO */
+@media (max-width:900px){
+  section[style*="display:flex"] {
+    flex-direction: column;
+    text-align:center;
+  }
+  section[style*="display:flex"] div[style*="flex:0 0 200px"] {
+    flex:1;
+    max-width:250px;
+  }
+}
+</style>
+
+<!-- SEÇÃO FINAL PREMIUM COM IMAGENS -->
+<section style="background: linear-gradient(135deg,#ff4d4d,#ff944d); padding:60px 20px; border-radius:25px; box-shadow:0 10px 30px rgba(0,0,0,0.5); margin:50px 0; text-align:center; color:#fff; position:relative; overflow:hidden;">
+  <div style="max-width:1000px; margin:0 auto; position:relative; z-index:2;">
+    
+    <!-- Título -->
+    <h2 style="font-size:2.5em; margin-bottom:15px; text-shadow:2px 2px 10px rgba(0,0,0,0.5);">
+      Está com dúvidas sobre comprar pela internet?
+    </h2>
+    <p style="font-size:1.3em; margin-bottom:40px; text-shadow:1px 1px 6px rgba(0,0,0,0.3);">
+      Fique tranquilo, nosso site é seguro e nossa entrega prática.
+    </p>
+    
+    <!-- Imagens de confiança -->
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+
+      <!-- Garantia -->
+      <div class="trust-card">
+        <img src="https://processador1.online/wp-content/uploads/2025/02/garantia.webp" alt="Garantia" style="width:80px; margin-bottom:15px;">
+        <h3>Totalmente<br> confiável</h3>
+      </div>
+
+      <!-- Cadeado -->
+      <div class="trust-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Segurança" style="width:80px; margin-bottom:15px;">
+        <h3>Dados pessoais e financeiros<br> não serão compartilhados</h3>
+      </div>
+
+      <!-- Entrega rápida -->
+      <div class="trust-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Entrega rápida" style="width:80px; margin-bottom:15px;">
+        <h3>Entrega rápida,<br>dentro do prazo</h3>
+      </div>
+
+    </div>
+
+    <!-- Botão chamativo -->
+    <a href="#irparaoferta" class="final-btn">Quero Comprar Agora!</a>
+  </div>
+
+  <!-- Fundo flutuante -->
+  <div class="floating-bg"></div>
+</section>
+
+<style>
+.trust-card {
+  flex:1 1 200px;
+  max-width:250px;
+  background: rgba(255,255,255,0.1);
+  padding:25px;
+  border-radius:25px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+  transition: transform 0.4s, box-shadow 0.4s;
+  text-align:center;
+  color:#fff;
+  animation: float 3s ease-in-out infinite;
+}
+.trust-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow:0 20px 35px rgba(0,0,0,0.6);
+}
+
+.final-btn {
+  display:inline-block;
+  margin-top:50px;
+  background: linear-gradient(135deg,#ffeb3b,#ff944d);
+  color:#222;
+  font-weight:bold;
+  padding:18px 40px;
+  border-radius:50px;
+  font-size:1.3em;
+  text-decoration:none;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  animation: glow 2s infinite alternate;
+}
+.final-btn:hover {
+  transform: scale(1.1);
+  box-shadow:0 15px 35px rgba(255,235,59,0.8), 0 0 25px rgba(255,235,59,0.6);
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 10px rgba(255,235,59,0.5); }
+  50% { box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 25px rgba(255,235,59,0.8); }
+  100% { box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 10px rgba(255,235,59,0.5); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-bg {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 70%);
+  z-index:1;
+  animation: floatbg 6s ease-in-out infinite;
+}
+@keyframes floatbg {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@media (max-width:800px){
+  .trust-card { max-width:90%; }
+  .final-btn { font-size:1.2em; padding:16px 30px; }
+}
+</style>
+
+
+<!-- LINKS MODAIS MODERNOS -->
+<div style="display:flex; justify-content:center; gap:25px; margin:60px 0 40px 0; flex-wrap:wrap;">
+
+  <a href="javascript:void(0)" onclick="openModal('privacy')" 
+     style="background: linear-gradient(135deg,#ff6a00,#ffcc00);
+            color:#222;
+            font-weight:bold;
+            padding:14px 28px;
+            border-radius:30px;
+            text-decoration:none;
+            box-shadow:0 8px 25px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            font-size:1em;
+            text-align:center;">
+    Política de Privacidade
+  </a>
+
+  <a href="javascript:void(0)" onclick="openModal('terms')" 
+      style="background: linear-gradient(135deg,#ff6a00,#ffcc00);
+            color:#222;
+            font-weight:bold;
+            padding:14px 28px;
+            border-radius:30px;
+            text-decoration:none;
+            box-shadow:0 8px 25px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            font-size:1em;
+            text-align:center;">
+    Termos de Uso
+  </a>
+
+</div>
+
+<style>
+/* HOVER E ANIMAÇÃO */
+a[onclick]:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+/* RESPONSIVO */
+@media (max-width:600px){
+  div[style*="display:flex"] {
+    flex-direction: column;
+    gap:15px;
+  }
+  a[onclick] {
+    width:80%;
+    margin:auto;
+  }
+}
+</style>
+
+
+
+
+
+<script>
+  document.querySelectorAll(".faq-question").forEach(item => {
+    item.addEventListener("click", () => {
+      const parent = item.parentElement;
+      parent.classList.toggle("active");
+    });
+  });
+
+
+
+</script>
+
+
+
+<footer style="background: #222; color: #fff; padding: 40px 20px; font-family: 'Arial', sans-serif; border-top: 4px solid #ff944d;">
+  <div class="footer-container">
+
+    <div class="footer-block aviso">
+      ⚠️ Aviso<br>
+      This site is not part of the Facebook website or Facebook Inc.<br>
+      Additionally, this site is <strong>NOT</strong> endorsed by Facebook in any way.<br>
+      <strong>FACEBOOK</strong> is a trademark of FACEBOOK, Inc.
+    </div>
+
+    <div class="footer-block direitos">
+      <div>© 2025 NicoMax | Todos os direitos reservados</div>
+      <img 
+        loading="lazy" 
+        decoding="async" 
+        src="https://processador1.online/wp-content/uploads/2025/02/icons-siteseguro.png" 
+        alt="Site Seguro"
+      >
+    </div>
+
+    <div class="footer-block pagamento">
+      <h3>Formas de pagamento</h3>
+      <img 
+        loading="lazy" 
+        decoding="async" 
+        src="https://processador1.online/wp-content/uploads/2025/02/icons-compra.png" 
+        alt="Formas de pagamento"
+      >
+    </div>
+
+  </div>
+</footer>
+
+<style>
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-block {
+  flex: 1 1 250px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.footer-block img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+  transition: transform 0.3s;
+}
+.footer-block img:hover {
+  transform: scale(1.1);
+}
+
+.footer-block h3 {
+  color: #fff;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+/* RESPONSIVO CELULAR */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .footer-block {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .footer-block img {
+    max-width: 80%;
+    height: auto;
+  }
+}
+</style>
+
+
+<style>
+footer a {
+  color: #ffeb3b;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 900px){
+  footer div[style*="display: flex"] { flex-direction: column; align-items: center; gap: 25px; text-align: center; }
+  footer img { width: 200px !important; height: auto !important; }
+}
+</style>
+
+
+<script>
+// CIGARRINHOS
+for(let i=0;i<15;i++){
+  let c=document.createElement('div');
+  c.classList.add('cigar');
+  c.style.left=Math.random()*100+'vw';
+  c.style.animationDuration=(5+Math.random()*5)+'s';
+  c.style.animationDelay=Math.random()*5+'s';
+  document.body.appendChild(c);
+}
+
+// CONTADOR
+function startCountdown(durationSec){
+  const countdownEl=document.getElementById('countdown');
+  let remaining=durationSec;
+  setInterval(()=>{ 
+    let hrs=Math.floor(remaining/3600);
+    let min=Math.floor((remaining%3600)/60);
+    let sec=remaining%60;
+    countdownEl.textContent=`Oferta termina em: ${hrs.toString().padStart(2,'0')}:${min.toString().padStart(2,'0')}:${sec.toString().padStart(2,'0')}`;
+    if(remaining>0) remaining--;
+  },1000);
+}
+startCountdown(12*60*60);
+
+// MODAIS
+function openModal(id){ document.getElementById(id).style.display='flex'; }
+function closeModal(id){ document.getElementById(id).style.display='none'; }
+window.onclick=function(e){ if(e.target.classList.contains('modal')) e.target.style.display='none'; };
+
+// ABAS KITS
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const btn=tab.querySelector('.whatsapp-btn');
+    btn.href=tab.getAttribute('data-whatsapp');
+  });
+});
+window.addEventListener('DOMContentLoaded', () => {
+  tabs[0].classList.add('active');
+});
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
